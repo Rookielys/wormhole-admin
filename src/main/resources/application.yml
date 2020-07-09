@@ -1,17 +1,19 @@
 spring:
   profiles:
     active: dev
-
----
-spring:
-  profiles: dev
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.2.101:3306/hello
-    username: mpw:yRbmyda4upm0+I0t08l2+g==
-    password: mpw:SdpnaoKzmaymZZgURaVG8g==
-server:
-  port: 9001
+    # HikariConfig
+    hikari:
+      pool-name: MyHikariCP
+      connection-test-query: SELECT 1
+      # 最小空闲连接
+      minimum-idle: 3
+      # 最大连接数
+      maximum-pool-size: 10
+      # 最大空闲时间
+      idle-timeout: 600000
+      # 最大生命时间
+      max-lifetime: 1800000
 mybatis-plus:
   global-config:
     db-config:
@@ -22,3 +24,13 @@ mybatis-plus:
       insert-strategy: not_empty
       update-strategy: not_empty
       select-strategy: not_empty
+---
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.2.101:3306/hello
+    username: mpw:yRbmyda4upm0+I0t08l2+g==
+    password: mpw:SdpnaoKzmaymZZgURaVG8g==
+server:
+  port: 9001
