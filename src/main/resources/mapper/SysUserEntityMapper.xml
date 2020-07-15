@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.haha.wormholeadmin.mapper.SysUserDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.haha.wormholeadmin.entity.SysUserEntity">
+        <result column="id" property="id" />
+        <result column="create_time" property="createTime" />
+        <result column="create_user" property="createUser" />
+        <result column="update_time" property="updateTime" />
+        <result column="update_user" property="updateUser" />
+        <result column="username" property="username" />
+        <result column="pwd" property="pwd" />
+        <result column="nickname" property="nickname" />
+        <result column="gender" property="gender" />
+        <result column="dept_id" property="deptId" />
+        <result column="team_id" property="teamId" />
+        <result column="salt" property="salt" />
+        <result column="wechat" property="wechat" />
+        <result column="qq" property="qq" />
+        <result column="phone_number" property="phoneNumber" />
+        <result column="email" property="email" />
+        <result column="birthday" property="birthday" />
+        <result column="delete_flag" property="deleteFlag" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        create_time,
+        create_user,
+        update_time,
+        update_user,
+        username, pwd, nickname, gender, dept_id, team_id, salt, wechat, qq, phone_number, email, birthday, delete_flag
+    </sql>
+
+</mapper>

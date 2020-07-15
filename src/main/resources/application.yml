@@ -17,20 +17,29 @@ spring:
 mybatis-plus:
   global-config:
     db-config:
-      table-prefix: tbl
+      table-prefix: tbl_
       table-underline: true
       capital-mode: true
       logic-delete-field: delete_flag
       insert-strategy: not_empty
       update-strategy: not_empty
       select-strategy: not_empty
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  config-location: classpath:/mybatis-config.xml
+  # mapper和dao都扫描扫描进系统后会自动关联起来
+  mapper-locations: [classpath:/mapper/**/*.xml]
 ---
 spring:
   profiles: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.2.101:3306/hello
+    url: mpw:2XS0qR/q+KSxL17iZ4GzZN/QYhNBLFY3ObK1t5DVpZYULp1q4WLCFW5RreVG8mVHe0HvdP9tWXtbxUMdrOj7pZ2uHT479pJ8Gk5GNKaf8JxZvBWv2mLd44Yjqq/m44ls
     username: mpw:yRbmyda4upm0+I0t08l2+g==
     password: mpw:SdpnaoKzmaymZZgURaVG8g==
 server:
   port: 9001
+logging:
+  level:
+    # 必须加在mapper的包上
+    com.haha.wormholeadmin.mapper: debug

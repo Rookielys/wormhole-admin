@@ -11,10 +11,13 @@ public interface EncryptUtils {
         System.out.println(randomKey);
         String username = "root";
         String password = "123456";
+        String url = "jdbc:mysql://192.168.2.101:3306/wormhole?useSSL=false&useUnicode=true&characterEncoding=utf8";
         // 随机密钥加密
-        String result1 = AES.encrypt(username, randomKey);
-        String result2 = AES.encrypt(password, randomKey);
+        String result1 = AES.encrypt(username, "79124d563af24ce3");
+        String result2 = AES.encrypt(password, "79124d563af24ce3");
+        String result3 = AES.encrypt(url, "79124d563af24ce3");
         System.out.println(result1);
         System.out.println(result2);
+        System.out.println(result3);
     }
 }
