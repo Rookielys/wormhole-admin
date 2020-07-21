@@ -1,5 +1,6 @@
 package com.haha.wormholeadmin;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.haha.wormholeadmin.entity.SysRoleEntity;
 import com.haha.wormholeadmin.mapper.SysRoleDao;
 import com.haha.wormholeadmin.service.SysRoleService;
@@ -22,7 +23,11 @@ public class TestController {
 
     @GetMapping("/test")
     public void tst() {
-        throw new NullPointerException();
+        //throw new NullPointerException();
+        SysRoleEntity sysRoleEntity = new SysRoleEntity();
+        sysRoleEntity.setRoleCode("test");
+        sysRoleEntity.setRoleName("");
+        System.out.println(sysRoleDao.selectOne(new QueryWrapper<>(sysRoleEntity)));
     }
 
     @GetMapping("/test2")

@@ -34,7 +34,7 @@ spring:
   profiles: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: mpw:2XS0qR/q+KSxL17iZ4GzZN/QYhNBLFY3ObK1t5DVpZYULp1q4WLCFW5RreVG8mVHe0HvdP9tWXtbxUMdrOj7pZ2uHT479pJ8Gk5GNKaf8JxZvBWv2mLd44Yjqq/m44ls
+    url: mpw:2XS0qR/q+KSxL17iZ4GzZLzz4bh6pyjBHqwffT/cVqGcnED+Ojm/Was4bgFwgdeSNxY10wNX6/YVxOXP/LIUCdGD9tHpEnwL34N3hfMsJRFIWQdCtZhNhCI2fRr1lw55
     username: mpw:yRbmyda4upm0+I0t08l2+g==
     password: mpw:SdpnaoKzmaymZZgURaVG8g==
 server:

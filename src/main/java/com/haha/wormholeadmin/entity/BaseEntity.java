@@ -19,7 +19,7 @@ public class BaseEntity implements Serializable {
     private String createUser;
 
     // 高版本mybatis支持1.8的时间api
-    @TableField(value = "create_time", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
     @TableField("update_user")
