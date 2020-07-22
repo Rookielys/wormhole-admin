@@ -12,18 +12,25 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Slf4j
 @ControllerAdvice
-public class GlobalHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnauthorizedException.class)
     @ResponseBody
-    public WormholeResponse<String> unauthorized(UnauthorizedException e) {
+    public WormholeResponse<String> error(UnauthorizedException e) {
         log.error("无权限", e);
         return WormholeResponse.buildError("无权限");
     }
 
+    @ExceptionHandler(CaptchaException.class)
+    @ResponseBody
+    public WormholeResponse<String> error(CaptchaException e) {
+        log.error(e.getMessage(), e);
+        return WormholeResponse.buildError(e.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseBody
-    public WormholeResponse<String> unknownError(Exception e) {
+    public WormholeResponse<String> error(Exception e) {
         log.error("未知错误", e);
         return WormholeResponse.buildError("未知错误，请联系管理员");
     }

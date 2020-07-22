@@ -49,6 +49,7 @@ public class ShiroConfig {
         factoryBean.setUnauthorizedUrl("");
         LinkedHashMap<String, String> auth = new LinkedHashMap<>();
         auth.put("/sys/login", "anon");
+        auth.put("/sys/verificationCode", "anon");
         auth.put("/**", "authc");
         return factoryBean;
     }
