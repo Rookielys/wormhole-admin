@@ -1,6 +1,7 @@
-package com.haha.wormholeadmin.conf;
+package com.haha.wormholeadmin.config;
 
-import com.haha.wormholeadmin.realms.LoginRealm;
+import com.haha.wormholeadmin.filter.CaptchaFilter;
+import com.haha.wormholeadmin.realm.LoginRealm;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.realm.Realm;
@@ -13,7 +14,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 @Configuration
 public class ShiroConfig {
@@ -36,6 +39,7 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSecurityManager defaultWebSecurityManager(Realm realm) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
+        securityManager.setSubjectFactory(new StatelessSubjectFactory());
         securityManager.setRealm(realm);
         return securityManager;
     }
@@ -44,13 +48,22 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager securityManager) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         factoryBean.setSecurityManager(securityManager);
-        factoryBean.setLoginUrl("/sys/login");
-        factoryBean.setSuccessUrl("");
-        factoryBean.setUnauthorizedUrl("");
+        //factoryBean.setLoginUrl("/sys/login");
+        //factoryBean.setSuccessUrl("");
+        //factoryBean.setUnauthorizedUrl("");
+
         LinkedHashMap<String, String> auth = new LinkedHashMap<>();
-        auth.put("/sys/login", "anon");
-        auth.put("/sys/verificationCode", "anon");
+        // 注意这里的路径一定是去掉servlet context path 即应用根路径后的路径
+        // 因为shiro根据url匹配过滤器链的时候获取的uri就是去掉根路径后的路径
+        auth.put("/verificationCode", "anon");
+        auth.put("/login", "captcha");
+        // 没有认证就跳转到配置的登录页面
         auth.put("/**", "authc");
+        factoryBean.setFilterChainDefinitionMap(auth);
+
+        Map<String, Filter> filters = factoryBean.getFilters();
+        filters.put("captcha", new CaptchaFilter());
+//        factoryBean.setFilters(filters);
         return factoryBean;
     }
 

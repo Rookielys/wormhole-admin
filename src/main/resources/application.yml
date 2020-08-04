@@ -39,6 +39,9 @@ spring:
     password: mpw:SdpnaoKzmaymZZgURaVG8g==
 server:
   port: 9001
+  servlet:
+    # 这里的路径是容器用来区分将请求转发到哪个应用中用的，具体到应用里获取到的url不包含这个前缀
+    context-path: /sys
 logging:
   level:
     # 必须加在mapper的包上

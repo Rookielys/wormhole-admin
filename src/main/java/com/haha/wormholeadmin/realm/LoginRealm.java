@@ -1,11 +1,10 @@
-package com.haha.wormholeadmin.realms;
+package com.haha.wormholeadmin.realm;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.haha.wormholeadmin.entity.SysUserEntity;
 import com.haha.wormholeadmin.service.SysUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;

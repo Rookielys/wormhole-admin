@@ -1,4 +1,4 @@
-package com.haha.wormholeadmin.conf;
+package com.haha.wormholeadmin.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.springframework.context.annotation.Bean;
