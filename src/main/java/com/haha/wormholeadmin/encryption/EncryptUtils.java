@@ -1,13 +1,16 @@
 package com.haha.wormholeadmin.encryption;
 
 import com.baomidou.mybatisplus.core.toolkit.AES;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 
 public interface EncryptUtils {
 
     static void main(String[] args) {
         // 生成 16 位随机 AES 密钥
         // 79124d563af24ce3
-        String randomKey = AES.generateRandomKey();
+        /*String randomKey = AES.generateRandomKey();
         System.out.println(randomKey);
         String username = "root";
         String password = "123456";
@@ -18,6 +21,8 @@ public interface EncryptUtils {
         String result3 = AES.encrypt(url, "79124d563af24ce3");
         System.out.println(result1);
         System.out.println(result2);
-        System.out.println(result3);
+        System.out.println(result3);*/
+        SimpleHash hash = new SimpleHash("MD5", "admin123123", "1283393817126404098", 32);
+        System.out.println(hash.toString());
     }
 }

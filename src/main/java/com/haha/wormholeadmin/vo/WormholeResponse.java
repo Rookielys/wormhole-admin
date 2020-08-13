@@ -1,6 +1,7 @@
 package com.haha.wormholeadmin.vo;
 
 import com.haha.wormholeadmin.constant.SystemConstants;
+import com.haha.wormholeadmin.enums.SystemEnum;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -29,4 +30,10 @@ public class WormholeResponse<T> {
     public static <K> WormholeResponse<K> buildError(String message) {
         return new WormholeResponse<K>().setMessage(message).setStatus(false).setCode(SystemConstants.RESPONSE_ERROR_CODE);
     }
+
+    public static <K> WormholeResponse<K> buildErrorByEnum(SystemEnum systemEnum) {
+        return new WormholeResponse<K>().setMessage(systemEnum.getMessage())
+                .setStatus(false).setCode(systemEnum.getCode());
+    }
+
 }

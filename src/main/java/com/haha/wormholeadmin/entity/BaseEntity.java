@@ -15,14 +15,14 @@ public class BaseEntity implements Serializable {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField("create_user")
+    @TableField(value = "create_user", fill = FieldFill.INSERT)
     private String createUser;
 
     // 高版本mybatis支持1.8的时间api
     @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
-    @TableField("update_user")
+    @TableField(value = "update_user", fill = FieldFill.UPDATE)
     private String updateUser;
 
     @TableLogic
