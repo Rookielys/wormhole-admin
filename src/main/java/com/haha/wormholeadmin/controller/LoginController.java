@@ -40,6 +40,7 @@ public class LoginController {
 //            return WormholeResponse.buildSuccess("已登录");
 //        }
         UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(loginUserVO.getUsername(), loginUserVO.getPwd());
+        usernamePasswordToken.setRememberMe(loginUserVO.getRememberMe());
         try {
             subject.login(usernamePasswordToken);
             // 返回token

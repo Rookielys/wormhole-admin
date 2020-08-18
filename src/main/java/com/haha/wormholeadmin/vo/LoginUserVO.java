@@ -15,5 +15,5 @@ public class LoginUserVO {
     private String key;
     @NotBlank(message = "验证码不能为空")
     private String verifyCode;
-    private String rememberMe;
+    private Boolean rememberMe;
 }
