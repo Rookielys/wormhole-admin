@@ -1,7 +1,10 @@
 package com.haha.wormholeadmin.controller;
 
 import cn.hutool.core.lang.UUID;
+import com.haha.wormholeadmin.entity.SysMenuEntity;
 import com.haha.wormholeadmin.exception.CreateCaptchaException;
+import com.haha.wormholeadmin.service.SysRoleMenuService;
+import com.haha.wormholeadmin.service.SysUserRoleService;
 import com.haha.wormholeadmin.util.JwtUtil;
 import com.haha.wormholeadmin.vo.CaptchaResponseVO;
 import com.haha.wormholeadmin.vo.WormholeResponse;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -31,6 +35,12 @@ public class LoginController {
 
     @Autowired
     private CacheManager cacheManager;
+
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
+
+    @Autowired
+    private SysRoleMenuService roleMenuService;
 
     @PostMapping("/login")
     public WormholeResponse<String> login(@Validated LoginUserVO loginUserVO, HttpServletResponse response) throws IOException {
@@ -86,6 +96,13 @@ public class LoginController {
             log.error("验证码获取失败", e);
             throw new CreateCaptchaException("获取验证码失败");
         }
+    }
+
+    @GetMapping("/getLoginUserMenu")
+    public WormholeResponse<List<SysMenuEntity>> getLoginUserMenu() {
+        Subject subject = SecurityUtils.getSubject();
+        String user = (String)subject.getPrincipals().getPrimaryPrincipal();
+        return WormholeResponse.buildSuccess(null, roleMenuService.getUserMenu(user));
     }
 
 }

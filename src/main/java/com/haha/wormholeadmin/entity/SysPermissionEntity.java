@@ -30,4 +30,9 @@ public class SysPermissionEntity extends BaseEntity {
      */
     private String permissionName;
 
+    /**
+     * 权限类别：1-页面权限，2-组件权限
+     */
+    private Integer permissionMode;
+
 }

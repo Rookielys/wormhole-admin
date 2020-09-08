@@ -36,7 +36,7 @@ public class SysMenuEntity extends BaseEntity {
     private String menuLabel;
 
     /**
-     * 是否可见：1-是，2-否
+     * 是否可见：1-是，0-否
      */
     private Boolean visibility;
 
@@ -49,5 +49,15 @@ public class SysMenuEntity extends BaseEntity {
      * 父id
      */
     private String parentId;
+
+    /**
+     * 是否叶子节点：1-是，0-否
+     */
+    private Boolean isLeaf;
+
+    /**
+     * 权限
+     */
+    private String permission;
 
 }

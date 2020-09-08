@@ -6,6 +6,8 @@ import com.haha.wormholeadmin.service.SysPermissionService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -17,4 +19,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysPermissionServiceImpl extends ServiceImpl<SysPermissionDao, SysPermissionEntity> implements SysPermissionService {
 
+    @Override
+    public List<String> getLoginUserPermission(String username) {
+        return this.baseMapper.getLoginUserPermission(username);
+    }
 }

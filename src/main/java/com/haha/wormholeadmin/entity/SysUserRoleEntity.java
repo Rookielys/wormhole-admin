@@ -21,14 +21,14 @@ public class SysUserRoleEntity extends BaseEntity {
     private static final long serialVersionUID=1L;
 
     /**
-     * 用户id
+     * 用户名
      */
-    private String userId;
+    private String userName;
 
     /**
-     * 角色id
+     * 角色code
      */
-    private String roleId;
+    private String roleCode;
 
 
 }

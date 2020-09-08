@@ -2,6 +2,7 @@ package com.haha.wormholeadmin.realm;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.haha.wormholeadmin.entity.SysUserEntity;
+import com.haha.wormholeadmin.service.SysPermissionService;
 import com.haha.wormholeadmin.service.SysUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -18,12 +19,15 @@ public class LoginRealm extends AuthorizingRealm {
     @Autowired
     private SysUserService userService;
 
+    @Autowired
+    private SysPermissionService permissionService;
+
     // 授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String)principals.getPrimaryPrincipal();
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.addRole("test");
+        authorizationInfo.addStringPermissions(permissionService.getLoginUserPermission(username));
         return authorizationInfo;
     }
 

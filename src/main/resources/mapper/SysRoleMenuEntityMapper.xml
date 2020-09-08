@@ -15,4 +15,19 @@
         role_id, menu_id
     </sql>
 
+    <select id="selectUserMenu" parameterType="string" resultType="com.haha.wormholeadmin.entity.SysMenuEntity">
+        SELECT
+            menu.*
+        FROM
+            tbl_sys_user_role user_role
+                INNER JOIN tbl_sys_role_permission role_perm
+                           ON (
+                               user_role.role_code = role_perm.role_code
+                               )
+                INNER JOIN tbl_sys_menu menu
+                           ON (
+                               role_perm.permission_code = menu.permission
+                               )
+        WHERE user_role.user_name = #{value}
+    </select>
 </mapper>

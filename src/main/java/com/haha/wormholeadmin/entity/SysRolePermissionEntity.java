@@ -21,14 +21,14 @@ public class SysRolePermissionEntity extends BaseEntity {
     private static final long serialVersionUID=1L;
 
     /**
-     * 角色id
+     * 角色
      */
-    private String roleId;
+    private String roleCode;
 
     /**
-     * 权限id
+     * 权限
      */
-    private String permissionId;
+    private String permissionCode;
 
 
 }

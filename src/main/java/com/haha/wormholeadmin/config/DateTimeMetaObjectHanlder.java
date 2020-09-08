@@ -18,7 +18,7 @@ public class DateTimeMetaObjectHanlder implements MetaObjectHandler {
         this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
         Subject subject = SecurityUtils.getSubject();
         this.strictInsertFill(metaObject, "createUser", String.class, subject.getPreviousPrincipals().getPrimaryPrincipal());
-        this.strictInsertFill(metaObject, "deleteFlag", Integer.class, 0);
+        this.strictInsertFill(metaObject, "deleteFlag", Boolean.class, false);
     }
 
     @Override

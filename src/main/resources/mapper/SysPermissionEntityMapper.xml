@@ -9,19 +9,33 @@
         <result column="create_user" property="createUser" />
         <result column="update_time" property="updateTime" />
         <result column="update_user" property="updateUser" />
+        <result column="delete_flag" property="deleteFlag" />
         <result column="permission_code" property="permissionCode" />
         <result column="permission_name" property="permissionName" />
-        <result column="delete_flag" property="deleteFlag" />
+        <result column="permission_mode" property="permissionMode" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
+        select
         id,
         create_time,
         create_user,
         update_time,
         update_user,
-        permission_code, permission_name, delete_flag
+        delete_flag,
+        permission_code,
+        permission_name,
+        permission_mode
+        from tbl_sys_permission
     </sql>
+
+    <select id="getLoginUserPermission" parameterType="string" resultType="string">
+        select
+            distinct perm.permission_code
+        from tbl_sys_role_permission perm
+        where perm.role_code in
+              (select role.role_code from tbl_sys_user_role role where role.user_name = #{value})
+    </select>
 
 </mapper>
